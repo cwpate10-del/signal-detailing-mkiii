@@ -631,17 +631,21 @@
         <p class="form-subtitle">We'll get back to you within 1 hour</p>
 
         <form id="bookingForm" novalidate>
+          <!-- FormSubmit config -->
+          <input type="hidden" name="_subject" value="New Pickup Request — Gotwixx Junk Removal">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
           <!-- Name -->
           <div class="form-group form-row">
             <div>
               <label class="form-label" for="firstName">First Name *</label>
-              <input type="text" id="firstName" class="form-input" placeholder="John" required>
+              <input type="text" id="firstName" name="First Name" class="form-input" placeholder="John" required>
               <div class="field-error">First name is required</div>
             </div>
             <div>
               <label class="form-label" for="lastName">Last Name *</label>
-              <input type="text" id="lastName" class="form-input" placeholder="Doe" required>
+              <input type="text" id="lastName" name="Last Name" class="form-input" placeholder="Doe" required>
               <div class="field-error">Last name is required</div>
             </div>
           </div>
@@ -650,12 +654,12 @@
           <div class="form-group form-row">
             <div>
               <label class="form-label" for="email">Email *</label>
-              <input type="email" id="email" class="form-input" placeholder="john@email.com" required>
+              <input type="email" id="email" name="Email" class="form-input" placeholder="john@email.com" required>
               <div class="field-error">Valid email is required</div>
             </div>
             <div>
               <label class="form-label" for="phone">Phone *</label>
-              <input type="tel" id="phone" class="form-input" placeholder="(555) 123-4567" required>
+              <input type="tel" id="phone" name="Phone" class="form-input" placeholder="(762) 268-1636" required>
               <div class="field-error">Phone number is required</div>
             </div>
           </div>
@@ -663,19 +667,19 @@
           <!-- Address -->
           <div class="form-group">
             <label class="form-label" for="address">Pickup Address *</label>
-            <input type="text" id="address" class="form-input" placeholder="123 Main St, Apt 4B" required>
+            <input type="text" id="address" name="Pickup Address" class="form-input" placeholder="123 Main St, Apt 4B" required>
             <div class="field-error">Address is required</div>
           </div>
 
           <div class="form-group form-row">
             <div>
               <label class="form-label" for="city">City *</label>
-              <input type="text" id="city" class="form-input" placeholder="Your City" required>
+              <input type="text" id="city" name="City" class="form-input" placeholder="Your City" required>
               <div class="field-error">City is required</div>
             </div>
             <div>
               <label class="form-label" for="zip">Zip Code *</label>
-              <input type="text" id="zip" class="form-input" placeholder="12345" required>
+              <input type="text" id="zip" name="Zip Code" class="form-input" placeholder="12345" required>
               <div class="field-error">Zip code is required</div>
             </div>
           </div>
@@ -684,12 +688,12 @@
           <div class="form-group form-row">
             <div>
               <label class="form-label" for="pickupDate">Preferred Date *</label>
-              <input type="date" id="pickupDate" class="form-input" required>
+              <input type="date" id="pickupDate" name="Preferred Date" class="form-input" required>
               <div class="field-error">Pick a date</div>
             </div>
             <div>
               <label class="form-label" for="pickupTime">Preferred Time *</label>
-              <select id="pickupTime" class="form-select" required>
+              <select id="pickupTime" name="Preferred Time" class="form-select" required>
                 <option value="" disabled selected>Select a window</option>
                 <option value="8am-10am">8:00 AM – 10:00 AM</option>
                 <option value="10am-12pm">10:00 AM – 12:00 PM</option>
@@ -704,7 +708,7 @@
           <!-- Description -->
           <div class="form-group">
             <label class="form-label" for="description">What Are We Hauling?</label>
-            <textarea id="description" class="form-textarea" placeholder="Old couch, broken appliances, yard debris..."></textarea>
+            <textarea id="description" name="Items to Haul" class="form-textarea" placeholder="Old couch, broken appliances, yard debris..."></textarea>
           </div>
 
           <button type="submit" class="submit-btn" id="submitBtn">BOOK MY PICKUP</button>
@@ -730,12 +734,9 @@
       <!-- Brand & Owner -->
       <div>
         <div class="footer-brand">GOT<span>WIXX</span> JUNK REMOVAL</div>
-        <p class="footer-owner">Owned &amp; operated by <strong>Charlie Pate</strong></p>
+        <p class="footer-owner">Owned &amp; operated by <strong>Paxton Barnes</strong></p>
         <ul class="footer-socials">
-          <li><a href="https://instagram.com/gotwixxjunkremoval" target="_blank" rel="noopener" aria-label="Instagram">&#9783;</a></li>
-          <li><a href="https://facebook.com/gotwixxjunkremoval" target="_blank" rel="noopener" aria-label="Facebook">&#9780;</a></li>
-          <li><a href="https://tiktok.com/@gotwixxjunkremoval" target="_blank" rel="noopener" aria-label="TikTok">&#9835;</a></li>
-          <li><a href="https://yelp.com/biz/gotwixx-junk-removal" target="_blank" rel="noopener" aria-label="Yelp">&#9733;</a></li>
+          <li><a href="https://facebook.com/WixxGarageCleanout" target="_blank" rel="noopener" aria-label="Facebook">&#9780;</a></li>
         </ul>
       </div>
 
@@ -753,8 +754,8 @@
       <div>
         <div class="footer-col-title">CONTACT</div>
         <div class="footer-info">
-          <a href="tel:+15551234567" style="color:var(--chartreuse);text-decoration:none;font-weight:600;">(555) 123-4567</a><br>
-          <a href="mailto:info@gotwixx.com" style="color:var(--light-gray);text-decoration:none;">info@gotwixx.com</a><br><br>
+          <a href="tel:+17622681636" style="color:var(--chartreuse);text-decoration:none;font-weight:600;">(762) 268-1636</a><br>
+          <a href="mailto:wixxgarage@gmail.com" style="color:var(--light-gray);text-decoration:none;">wixxgarage@gmail.com</a><br><br>
           Serving the greater<br><strong>Metro Area</strong>
         </div>
       </div>
@@ -823,16 +824,29 @@
         return;
       }
 
-      // Simulate submit
+      // Submit to FormSubmit.co
       submitBtn.classList.add('loading');
       submitBtn.textContent = 'SUBMITTING...';
 
-      setTimeout(() => {
+      const formData = new FormData(form);
+
+      fetch('https://formsubmit.co/ajax/wixxgarage@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
         form.style.display = 'none';
         document.querySelector('.form-title').style.display = 'none';
         document.querySelector('.form-subtitle').style.display = 'none';
         document.getElementById('successMessage').classList.add('show');
-      }, 1500);
+      })
+      .catch(error => {
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = 'BOOK MY PICKUP';
+        alert('Something went wrong. Please call us at (762) 268-1636 to book your pickup.');
+      });
     });
   </script>
 
