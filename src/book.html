@@ -474,13 +474,82 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
     .footer-brand {
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       letter-spacing: 3px;
       color: var(--chartreuse);
     }
     .footer-brand span { color: var(--orange); }
+
+    .footer-owner {
+      font-size: 0.85rem;
+      color: var(--light-gray);
+      margin-top: 0.6rem;
+      line-height: 1.6;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      list-style: none;
+    }
+    .footer-socials a {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--charcoal);
+      border: 1px solid var(--mid-gray);
+      color: var(--warm-white);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+      clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+    }
+    .footer-socials a:hover {
+      border-color: var(--chartreuse);
+      color: var(--chartreuse);
+      transform: translateY(-2px);
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 3px;
+      color: var(--warm-white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-info {
+      font-size: 0.85rem;
+      color: var(--light-gray);
+      line-height: 1.8;
+    }
+    .footer-info strong {
+      color: var(--warm-white);
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--mid-gray);
+      padding-top: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
     .footer-copy {
       font-size: 0.75rem;
       color: var(--mid-gray);
@@ -498,7 +567,8 @@
         padding: 3rem 2rem 4rem;
       }
       nav { padding: 1rem 1.5rem; }
-      footer { padding: 1.5rem; }
+      footer { padding: 2rem 1.5rem 1.5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 520px) {
@@ -508,6 +578,7 @@
       .info-heading {
         font-size: 2.8rem;
       }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -654,8 +725,46 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand">GOT<span>WIXX</span> JUNK REMOVAL</div>
-    <span class="footer-copy">&copy; 2026 Gotwixx Junk Removal. All rights reserved.</span>
+    <div class="footer-grid">
+
+      <!-- Brand & Owner -->
+      <div>
+        <div class="footer-brand">GOT<span>WIXX</span> JUNK REMOVAL</div>
+        <p class="footer-owner">Owned &amp; operated by <strong>Charlie Pate</strong></p>
+        <ul class="footer-socials">
+          <li><a href="https://instagram.com/gotwixxjunkremoval" target="_blank" rel="noopener" aria-label="Instagram">&#9783;</a></li>
+          <li><a href="https://facebook.com/gotwixxjunkremoval" target="_blank" rel="noopener" aria-label="Facebook">&#9780;</a></li>
+          <li><a href="https://tiktok.com/@gotwixxjunkremoval" target="_blank" rel="noopener" aria-label="TikTok">&#9835;</a></li>
+          <li><a href="https://yelp.com/biz/gotwixx-junk-removal" target="_blank" rel="noopener" aria-label="Yelp">&#9733;</a></li>
+        </ul>
+      </div>
+
+      <!-- Hours -->
+      <div>
+        <div class="footer-col-title">HOURS</div>
+        <div class="footer-info">
+          <strong>Mon – Fri</strong><br>7:00 AM – 7:00 PM<br>
+          <strong>Saturday</strong><br>8:00 AM – 5:00 PM<br>
+          <strong>Sunday</strong><br>Closed
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-title">CONTACT</div>
+        <div class="footer-info">
+          <a href="tel:+15551234567" style="color:var(--chartreuse);text-decoration:none;font-weight:600;">(555) 123-4567</a><br>
+          <a href="mailto:info@gotwixx.com" style="color:var(--light-gray);text-decoration:none;">info@gotwixx.com</a><br><br>
+          Serving the greater<br><strong>Metro Area</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Gotwixx Junk Removal. All rights reserved.</p>
+      <p class="footer-copy">Built with grit. No junk left behind.</p>
+    </div>
   </footer>
 
   <script>
