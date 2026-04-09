@@ -563,6 +563,39 @@
       letter-spacing: 0;
     }
 
+    /* ── ADD-ONS (standalone below grid) ── */
+    .addons-card {
+      margin-top: 3rem;
+      background: var(--onyx);
+      border: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+    .addons-card:hover {
+      background: var(--graphite);
+    }
+    .addons-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--copper);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .addons-card:hover::before {
+      transform: scaleX(1);
+    }
+
     /* ── ABOUT ── */
     #about {
       background: var(--onyx);
@@ -1080,14 +1113,15 @@
         <div class="service-price">Custom Quote <span>/ based on vehicle</span></div>
       </div>
 
-      <div class="service-card sr sr-delay-4">
-        <div class="service-number">+</div>
-        <h3 class="service-name">Package Add-Ons</h3>
-        <p class="service-desc">
-          Take any detail to the next level. Add scratch removal, carpet and upholstery shampooing, or ceramic coating to any package.
-        </p>
-        <div class="service-price">Ask Us <span>/ add to any package</span></div>
-      </div>
+    </div>
+
+    <div class="addons-card sr sr-delay-4">
+      <div class="service-number">+</div>
+      <h3 class="service-name">Package Add-Ons</h3>
+      <p class="service-desc">
+        Take any detail to the next level. Add scratch removal, carpet and upholstery shampooing, or ceramic coating to any package.
+      </p>
+      <div class="service-price">Ask Us <span>/ add to any package</span></div>
     </div>
   </section>
 
