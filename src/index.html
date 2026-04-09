@@ -711,23 +711,19 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 3px;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 4px;
     }
 
     .gallery-item {
-      aspect-ratio: 1;
       background: var(--graphite);
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.4s;
     }
     .gallery-item:nth-child(1) {
-      grid-column: span 2;
       grid-row: span 2;
-      aspect-ratio: auto;
     }
 
     .gallery-item img {
@@ -979,8 +975,8 @@
       section { padding: 6rem 2.5rem; }
       .hero-content { padding: 0 2.5rem; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 1; grid-row: span 1; aspect-ratio: 1; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:nth-child(1) { grid-row: span 1; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -1013,7 +1009,8 @@
       .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-portraits { gap: 2rem; }
       .portrait-circle { width: 140px; height: 140px; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-item:nth-child(1) { grid-row: span 1; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; }
       .hero-actions .btn-primary,
@@ -1255,6 +1252,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;" class="sr sr-delay-4">
+      <a href="review.html" class="btn-ghost">Leave a Review</a>
     </div>
   </section>
 

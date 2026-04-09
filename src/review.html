@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave a Review — Signal Detailing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #080808;
+      --onyx: #111111;
+      --graphite: #1a1a1a;
+      --gunmetal: #2a2a2e;
+      --chrome: #c0c0c8;
+      --silver: #9898a0;
+      --pearl: #e8e6e1;
+      --copper: #c47a4a;
+      --copper-glow: #d4946a;
+      --copper-dim: #8a5530;
+      --border: rgba(192, 192, 200, 0.08);
+      --error: #e05252;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--pearl);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── GRAIN ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes lineExtend {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    @keyframes shimmerSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes checkPop {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(8, 8, 8, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.2s forwards;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--pearl);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--copper); }
+
+    .nav-back {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--pearl); }
+    .nav-back-arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+    .nav-back:hover .nav-back-arrow { transform: translateX(-4px); }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 2rem 4rem;
+    }
+
+    .review-container {
+      max-width: 560px;
+      width: 100%;
+      opacity: 0;
+      animation: revealUp 0.8s ease-out 0.4s forwards;
+    }
+
+    .review-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .review-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 1rem;
+    }
+
+    .review-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: var(--pearl);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .review-title em {
+      font-style: italic;
+      color: var(--chrome);
+    }
+
+    .review-line {
+      width: 60px;
+      height: 1px;
+      background: var(--copper);
+      margin: 0 auto 1.2rem;
+      transform-origin: center;
+      transform: scaleX(0);
+      animation: lineExtend 0.8s ease-out 0.8s forwards;
+    }
+
+    .review-subtitle {
+      font-size: 0.9rem;
+      color: var(--silver);
+      line-height: 1.7;
+    }
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 1.4rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-label {
+      font-weight: 500;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--onyx);
+      border: 1px solid var(--gunmetal);
+      color: var(--pearl);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 400;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--copper);
+      box-shadow: 0 0 0 2px rgba(196, 122, 74, 0.12);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #444; }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-input.invalid {
+      border-color: var(--error);
+      box-shadow: 0 0 0 2px rgba(224, 82, 82, 0.12);
+    }
+    .field-error {
+      font-size: 0.7rem;
+      color: var(--error);
+      margin-top: 0.3rem;
+      display: none;
+    }
+    .form-input.invalid ~ .field-error {
+      display: block;
+    }
+
+    /* ── STAR RATING ── */
+    .star-rating {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 2rem;
+      color: var(--gunmetal);
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      line-height: 1;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: var(--copper);
+    }
+
+    .star-rating input:checked ~ label {
+      color: var(--copper);
+    }
+
+    /* Reverse order trick for CSS-only hover */
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating input:checked ~ label {
+      color: var(--copper);
+    }
+    .star-rating label:hover ~ label ~ label {
+      color: var(--gunmetal);
+    }
+
+    .star-rating label:hover {
+      transform: scale(1.15);
+    }
+
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 1.1rem 2rem;
+      margin-top: 0.5rem;
+      background: var(--copper);
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .submit-btn:hover {
+      background: var(--copper-glow);
+      transform: translateY(-1px);
+    }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%);
+    }
+    .submit-btn:hover::after {
+      animation: shimmerSlide 0.6s ease-out;
+    }
+    .submit-btn.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    /* ── SUCCESS ── */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .success-message.show { display: block; }
+
+    .success-check {
+      width: 72px;
+      height: 72px;
+      border: 2px solid var(--copper);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: var(--copper);
+      animation: checkPop 0.5s ease-out;
+    }
+
+    .success-message h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--pearl);
+      margin-bottom: 0.8rem;
+    }
+    .success-message p {
+      color: var(--silver);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .success-message .btn-back {
+      display: inline-block;
+      margin-top: 2rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: var(--chrome);
+      border: 1px solid var(--gunmetal);
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .success-message .btn-back:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--onyx);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.7rem;
+      color: var(--gunmetal);
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      main { padding: 6rem 1.5rem 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Signal <span>Detailing</span></a>
+    <a href="index.html" class="nav-back">
+      <span class="nav-back-arrow">&larr;</span> Back to Home
+    </a>
+  </nav>
+
+  <main>
+    <div class="review-container">
+
+      <div class="review-header">
+        <p class="review-label">Share Your Experience</p>
+        <h1 class="review-title">Leave Us a <em>Review</em></h1>
+        <div class="review-line"></div>
+        <p class="review-subtitle">We appreciate your feedback. Let us know how your detail went.</p>
+      </div>
+
+      <form id="reviewForm" novalidate>
+        <input type="hidden" name="_subject" value="New Customer Review — Signal Detailing">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-group form-row">
+          <div>
+            <label class="form-label" for="name">Your Name *</label>
+            <input type="text" id="name" name="Name" class="form-input" placeholder="John D." required>
+            <div class="field-error">Name is required</div>
+          </div>
+          <div>
+            <label class="form-label" for="vehicle">Your Vehicle</label>
+            <input type="text" id="vehicle" name="Vehicle" class="form-input" placeholder="2024 Tacoma">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Rating *</label>
+          <div class="star-rating">
+            <input type="radio" id="star5" name="Rating" value="5" required>
+            <label for="star5">&#9733;</label>
+            <input type="radio" id="star4" name="Rating" value="4">
+            <label for="star4">&#9733;</label>
+            <input type="radio" id="star3" name="Rating" value="3">
+            <label for="star3">&#9733;</label>
+            <input type="radio" id="star2" name="Rating" value="2">
+            <label for="star2">&#9733;</label>
+            <input type="radio" id="star1" name="Rating" value="1">
+            <label for="star1">&#9733;</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="service">Service You Received</label>
+          <input type="text" id="service" name="Service Received" class="form-input" placeholder="Full Detail, Interior, Exterior...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="review">Your Review *</label>
+          <textarea id="review" name="Review" class="form-textarea" placeholder="Tell us about your experience..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Review</button>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        <div class="success-check">&#10003;</div>
+        <h3>Thank You</h3>
+        <p>Your review means the world to us. We're glad we could take care of your vehicle.</p>
+        <a href="index.html" class="btn-back">Back to Home</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; 2026 Signal Detailing. All rights reserved.</p>
+    <p class="footer-copy">(423) 633-7344</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('reviewForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Clear invalid on input
+    document.querySelectorAll('.form-input, .form-textarea').forEach(el => {
+      el.addEventListener('input', () => el.classList.remove('invalid'));
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Check name
+      const name = document.getElementById('name');
+      if (!name.value.trim()) { name.classList.add('invalid'); valid = false; }
+
+      // Check rating
+      const rating = form.querySelector('input[name="Rating"]:checked');
+      if (!rating) { valid = false; }
+
+      // Check review text
+      const review = document.getElementById('review');
+      if (!review.value.trim()) {
+        review.style.borderColor = 'var(--error)';
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      submitBtn.classList.add('loading');
+      submitBtn.textContent = 'Submitting...';
+
+      const formData = new FormData(form);
+
+      fetch('https://formsubmit.co/ajax/signalcardetailing@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        form.style.display = 'none';
+        document.querySelector('.review-header').style.display = 'none';
+        document.getElementById('successMessage').classList.add('show');
+      })
+      .catch(err => {
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = 'Submit Review';
+        alert('Something went wrong. Please try again or call us at (423) 633-7344.');
+      });
+    });
+  </script>
+
+</body>
+</html>
