@@ -3,33 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book a Pickup — Gotwixx Junk Removal</title>
+  <title>Book a Detail — Signal Detailing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --charcoal: #1a1a1a;
-      --deep-black: #0d0d0d;
-      --chartreuse: #c8f542;
-      --orange: #ff6b2b;
-      --warm-white: #f0ece4;
-      --mid-gray: #3a3a3a;
-      --light-gray: #999;
-      --error: #ff4444;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body: 'Barlow', sans-serif;
+      --black: #080808;
+      --onyx: #111111;
+      --graphite: #1a1a1a;
+      --gunmetal: #2a2a2e;
+      --chrome: #c0c0c8;
+      --silver: #9898a0;
+      --pearl: #e8e6e1;
+      --copper: #c47a4a;
+      --copper-glow: #d4946a;
+      --copper-dim: #8a5530;
+      --border: rgba(192, 192, 200, 0.08);
+      --error: #e05252;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--deep-black);
-      color: var(--warm-white);
+      background: var(--black);
+      color: var(--pearl);
       font-family: var(--font-body);
+      font-weight: 300;
       overflow-x: hidden;
+      line-height: 1.6;
       min-height: 100vh;
     }
 
@@ -40,43 +46,31 @@
       inset: 0;
       z-index: 9999;
       pointer-events: none;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     /* ── KEYFRAMES ── */
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(50px); }
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-60px); }
-      to { opacity: 1; transform: translateX(0); }
     }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    @keyframes lineGrow {
+    @keyframes lineExtend {
       from { transform: scaleX(0); }
       to { transform: scaleX(1); }
     }
-    @keyframes diagonalSlide {
-      from { transform: translateX(100%) skewX(-12deg); }
-      to { transform: translateX(0) skewX(-12deg); }
-    }
-    @keyframes inputFocus {
-      from { border-color: var(--mid-gray); }
-      to { border-color: var(--chartreuse); }
+    @keyframes shimmerSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
     @keyframes checkPop {
       0% { transform: scale(0); }
-      50% { transform: scale(1.3); }
+      50% { transform: scale(1.2); }
       100% { transform: scale(1); }
-    }
-    @keyframes shimmer {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
     }
 
     /* ── NAV ── */
@@ -89,36 +83,39 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 3rem;
-      background: rgba(13, 13, 13, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(200, 245, 66, 0.1);
-      animation: fadeIn 0.6s ease-out;
+      padding: 1.4rem 4rem;
+      background: rgba(8, 8, 8, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.2s forwards;
     }
 
     .nav-logo {
       font-family: var(--font-display);
-      font-size: 1.8rem;
-      letter-spacing: 3px;
-      color: var(--chartreuse);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--pearl);
       text-decoration: none;
     }
-    .nav-logo span { color: var(--orange); }
+    .nav-logo span { color: var(--copper); }
 
     .nav-back {
       font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--warm-white);
+      color: var(--silver);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       transition: color 0.3s;
     }
-    .nav-back:hover { color: var(--chartreuse); }
+    .nav-back:hover { color: var(--pearl); }
     .nav-back-arrow {
       display: inline-block;
       transition: transform 0.3s;
@@ -130,10 +127,10 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 100vh;
-      padding-top: 4.5rem;
+      padding-top: 5rem;
     }
 
-    /* ── LEFT PANEL — info side ── */
+    /* ── LEFT — INFO PANEL ── */
     .info-panel {
       padding: 5rem 4rem;
       display: flex;
@@ -147,10 +144,10 @@
       content: '';
       position: absolute;
       top: -10%;
-      left: -20%;
-      width: 80%;
+      left: -15%;
+      width: 70%;
       height: 130%;
-      background: linear-gradient(135deg, rgba(200, 245, 66, 0.06) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(196, 122, 74, 0.04) 0%, transparent 60%);
       transform: skewX(-12deg);
       z-index: 0;
     }
@@ -161,47 +158,49 @@
     }
 
     .info-tag {
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 5px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 6px;
       text-transform: uppercase;
-      color: var(--orange);
+      color: var(--copper);
       margin-bottom: 1.2rem;
       opacity: 0;
-      animation: slideInLeft 0.6s ease-out 0.2s forwards;
+      animation: revealUp 0.6s ease-out 0.4s forwards;
     }
 
     .info-heading {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5rem);
-      letter-spacing: 3px;
-      line-height: 0.95;
-      color: var(--warm-white);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--pearl);
       opacity: 0;
-      animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+      animation: revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
     }
-    .info-heading .accent { color: var(--chartreuse); }
+    .info-heading em {
+      font-style: italic;
+      color: var(--copper);
+    }
 
-    .info-heading::after {
-      content: '';
+    .info-heading-line {
       display: block;
-      width: 80px;
-      height: 3px;
-      background: var(--chartreuse);
+      width: 60px;
+      height: 1px;
+      background: var(--copper);
       margin-top: 1.5rem;
       transform-origin: left;
       transform: scaleX(0);
-      animation: lineGrow 0.8s ease-out 0.8s forwards;
+      animation: lineExtend 0.8s ease-out 0.9s forwards;
     }
 
     .info-desc {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--light-gray);
+      font-size: 0.95rem;
+      color: var(--silver);
+      max-width: 400px;
+      line-height: 1.8;
       margin-top: 1.5rem;
-      max-width: 420px;
       opacity: 0;
-      animation: slideUp 0.6s ease-out 0.7s forwards;
+      animation: revealUp 0.6s ease-out 0.8s forwards;
     }
 
     .info-perks {
@@ -209,36 +208,35 @@
       margin-top: 2.5rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
       opacity: 0;
-      animation: slideUp 0.6s ease-out 0.9s forwards;
+      animation: revealUp 0.6s ease-out 1s forwards;
     }
 
     .info-perks li {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--warm-white);
+      gap: 1rem;
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--chrome);
     }
 
     .perk-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--charcoal);
-      border: 1px solid var(--mid-gray);
+      width: 36px;
+      height: 36px;
+      background: var(--graphite);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       flex-shrink: 0;
-      clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
     }
 
-    /* ── RIGHT PANEL — form side ── */
+    /* ── RIGHT — FORM PANEL ── */
     .form-panel {
-      background: var(--charcoal);
+      background: var(--onyx);
       padding: 5rem 4rem;
       display: flex;
       flex-direction: column;
@@ -247,25 +245,24 @@
       overflow: hidden;
     }
 
-    /* Diagonal accent on form panel */
     .form-panel::before {
       content: '';
       position: absolute;
       top: 0;
+      left: 0;
       right: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--orange), var(--chartreuse));
+      height: 2px;
+      background: linear-gradient(90deg, var(--copper-dim), var(--copper), var(--copper-dim));
     }
 
     .form-panel::after {
       content: '';
       position: absolute;
-      bottom: -20%;
+      bottom: -15%;
       right: -10%;
       width: 50%;
-      height: 60%;
-      background: radial-gradient(ellipse, rgba(200, 245, 66, 0.04), transparent 70%);
+      height: 50%;
+      background: radial-gradient(ellipse, rgba(196,122,74,0.03), transparent 70%);
       z-index: 0;
     }
 
@@ -275,27 +272,26 @@
       max-width: 480px;
       width: 100%;
       opacity: 0;
-      animation: slideUp 0.8s ease-out 0.5s forwards;
+      animation: revealUp 0.8s ease-out 0.5s forwards;
     }
 
     .form-title {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
       letter-spacing: 3px;
-      color: var(--chartreuse);
+      text-transform: uppercase;
+      color: var(--pearl);
       margin-bottom: 0.3rem;
     }
     .form-subtitle {
-      font-size: 0.85rem;
-      color: var(--light-gray);
+      font-size: 0.8rem;
+      color: var(--silver);
       margin-bottom: 2.5rem;
     }
 
     /* ── FORM FIELDS ── */
-    .form-group {
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
+    .form-group { margin-bottom: 1.4rem; }
 
     .form-row {
       display: grid;
@@ -304,11 +300,11 @@
     }
 
     .form-label {
-      font-weight: 600;
-      font-size: 0.7rem;
+      font-weight: 500;
+      font-size: 0.68rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--light-gray);
+      color: var(--silver);
       margin-bottom: 0.5rem;
       display: block;
     }
@@ -317,53 +313,52 @@
     .form-select,
     .form-textarea {
       width: 100%;
-      padding: 0.9rem 1rem;
-      background: var(--deep-black);
-      border: 1px solid var(--mid-gray);
-      color: var(--warm-white);
+      padding: 0.85rem 1rem;
+      background: var(--black);
+      border: 1px solid var(--gunmetal);
+      color: var(--pearl);
       font-family: var(--font-body);
-      font-size: 0.95rem;
-      font-weight: 500;
+      font-size: 0.9rem;
+      font-weight: 400;
       outline: none;
       transition: border-color 0.3s, box-shadow 0.3s;
-      clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
     }
 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
-      border-color: var(--chartreuse);
-      box-shadow: 0 0 0 2px rgba(200, 245, 66, 0.15);
+      border-color: var(--copper);
+      box-shadow: 0 0 0 2px rgba(196, 122, 74, 0.12);
     }
 
-    .form-input::placeholder { color: #555; }
-    .form-textarea::placeholder { color: #555; }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #444; }
 
     .form-select {
       appearance: none;
       cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239898a0' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 1rem center;
     }
     .form-select option {
-      background: var(--deep-black);
-      color: var(--warm-white);
+      background: var(--black);
+      color: var(--pearl);
     }
 
     .form-textarea {
       resize: vertical;
-      min-height: 90px;
+      min-height: 80px;
     }
 
     /* ── VALIDATION ── */
     .form-input.invalid,
     .form-select.invalid {
       border-color: var(--error);
-      box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.15);
+      box-shadow: 0 0 0 2px rgba(224, 82, 82, 0.12);
     }
     .field-error {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--error);
       margin-top: 0.3rem;
       display: none;
@@ -373,42 +368,46 @@
       display: block;
     }
 
-    /* ── SUBMIT BTN ── */
+    /* ── SUBMIT ── */
     .submit-btn {
       width: 100%;
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      letter-spacing: 4px;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
       padding: 1.1rem 2rem;
-      margin-top: 1rem;
-      background: var(--orange);
-      color: var(--deep-black);
+      margin-top: 0.8rem;
+      background: var(--copper);
+      color: var(--black);
       border: none;
       cursor: pointer;
-      clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
-      transition: background 0.3s, transform 0.2s;
       position: relative;
       overflow: hidden;
+      transition: background 0.3s, transform 0.2s;
     }
     .submit-btn:hover {
-      background: var(--chartreuse);
-      transform: scale(1.02);
+      background: var(--copper-glow);
+      transform: translateY(-1px);
     }
     .submit-btn:active { transform: scale(0.98); }
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%);
+    }
+    .submit-btn:hover::after {
+      animation: shimmerSlide 0.6s ease-out;
+    }
 
     .submit-btn.loading {
       pointer-events: none;
-      background: linear-gradient(
-        90deg,
-        var(--orange) 0%,
-        var(--chartreuse) 50%,
-        var(--orange) 100%
-      );
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
+      opacity: 0.7;
     }
 
-    /* ── SUCCESS STATE ── */
+    /* ── SUCCESS ── */
     .success-message {
       display: none;
       text-align: center;
@@ -417,175 +416,87 @@
     .success-message.show { display: block; }
 
     .success-check {
-      width: 80px;
-      height: 80px;
-      border: 3px solid var(--chartreuse);
+      width: 72px;
+      height: 72px;
+      border: 2px solid var(--copper);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1.5rem;
-      font-size: 2.5rem;
-      color: var(--chartreuse);
+      font-size: 2rem;
+      color: var(--copper);
       animation: checkPop 0.5s ease-out;
     }
 
     .success-message h3 {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
       letter-spacing: 3px;
-      color: var(--chartreuse);
+      color: var(--pearl);
       margin-bottom: 0.8rem;
     }
     .success-message p {
-      color: var(--light-gray);
-      font-size: 1rem;
+      color: var(--silver);
+      font-size: 0.92rem;
       line-height: 1.7;
-      max-width: 360px;
+      max-width: 340px;
       margin: 0 auto;
     }
     .success-message .btn-back {
       display: inline-block;
       margin-top: 2rem;
-      font-family: var(--font-display);
-      font-size: 1rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
       letter-spacing: 3px;
-      padding: 0.8rem 2.2rem;
+      text-transform: uppercase;
+      padding: 0.8rem 2rem;
       background: transparent;
-      color: var(--warm-white);
-      border: 2px solid var(--mid-gray);
+      color: var(--chrome);
+      border: 1px solid var(--gunmetal);
       text-decoration: none;
-      clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
       transition: border-color 0.3s, color 0.3s;
     }
     .success-message .btn-back:hover {
-      border-color: var(--chartreuse);
-      color: var(--chartreuse);
+      border-color: var(--copper);
+      color: var(--copper);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--deep-black);
-      border-top: 1px solid var(--mid-gray);
-      padding: 2rem 3rem;
+      background: var(--onyx);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
     }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-brand {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      letter-spacing: 3px;
-      color: var(--chartreuse);
-    }
-    .footer-brand span { color: var(--orange); }
-
-    .footer-owner {
-      font-size: 0.85rem;
-      color: var(--light-gray);
-      margin-top: 0.6rem;
-      line-height: 1.6;
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 1.2rem;
-      list-style: none;
-    }
-    .footer-socials a {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--charcoal);
-      border: 1px solid var(--mid-gray);
-      text-decoration: none;
-      border-radius: 8px;
-      transition: border-color 0.3s, transform 0.2s, background 0.3s;
-    }
-    .footer-socials a:hover {
-      border-color: var(--chartreuse);
-      transform: translateY(-2px);
-      background: var(--mid-gray);
-    }
-    .footer-socials a svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--warm-white);
-      transition: fill 0.3s;
-    }
-    .footer-socials a:hover svg {
-      fill: var(--chartreuse);
-    }
-
-    .footer-col-title {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      letter-spacing: 3px;
-      color: var(--warm-white);
-      margin-bottom: 1rem;
-    }
-
-    .footer-info {
-      font-size: 0.85rem;
-      color: var(--light-gray);
-      line-height: 1.8;
-    }
-    .footer-info strong {
-      color: var(--warm-white);
-      font-weight: 600;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--mid-gray);
-      padding-top: 1.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
     .footer-copy {
-      font-size: 0.75rem;
-      color: var(--mid-gray);
+      font-size: 0.7rem;
+      color: var(--gunmetal);
+      letter-spacing: 1px;
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .page {
-        grid-template-columns: 1fr;
-      }
-      .info-panel {
-        padding: 4rem 2rem 2rem;
-      }
-      .form-panel {
-        padding: 3rem 2rem 4rem;
-      }
-      nav { padding: 1rem 1.5rem; }
-      footer { padding: 2rem 1.5rem 1.5rem; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .page { grid-template-columns: 1fr; }
+      .info-panel { padding: 4rem 2rem 2rem; }
+      .form-panel { padding: 3rem 2rem 4rem; }
+      nav { padding: 1.2rem 2rem; }
+      footer { padding: 1.5rem 2rem; }
     }
 
     @media (max-width: 520px) {
-      .form-row {
-        grid-template-columns: 1fr;
+      .form-row { grid-template-columns: 1fr; }
+      .info-heading { font-size: 2.4rem; }
+      nav { padding: 1rem 1.5rem; }
+      footer {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
       }
-      .info-heading {
-        font-size: 2.8rem;
-      }
-      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -593,7 +504,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">GOT<span>WIXX</span></a>
+    <a href="index.html" class="nav-logo">Signal <span>Detailing</span></a>
     <a href="index.html" class="nav-back">
       <span class="nav-back-arrow">&larr;</span> Back to Home
     </a>
@@ -605,26 +516,27 @@
     <!-- LEFT — INFO -->
     <div class="info-panel">
       <div class="info-content">
-        <p class="info-tag">Schedule Your Pickup</p>
-        <h1 class="info-heading">BOOK IT.<br><span class="accent">WE'LL HAUL IT.</span></h1>
-        <p class="info-desc">Fill out the form and we'll confirm your pickup within the hour. Most jobs are completed same-day.</p>
+        <p class="info-tag">Book Your Detail</p>
+        <h1 class="info-heading">Tell Us About<br>Your <em>Vehicle</em></h1>
+        <div class="info-heading-line"></div>
+        <p class="info-desc">Fill out the form and we'll reach out with a custom quote based on your vehicle's size and condition.</p>
 
         <ul class="info-perks">
           <li>
-            <div class="perk-icon">&#9201;</div>
-            Same-day & next-day pickups available
+            <div class="perk-icon">&#9993;</div>
+            Quick response — usually within the hour
           </li>
           <li>
-            <div class="perk-icon">&#9989;</div>
-            Upfront pricing — no hidden fees
+            <div class="perk-icon">&#9881;</div>
+            Custom quotes for every vehicle
           </li>
           <li>
-            <div class="perk-icon">&#9851;</div>
-            70% of items recycled or donated
+            <div class="perk-icon">&#9758;</div>
+            We come to you — fully mobile service
           </li>
           <li>
-            <div class="perk-icon">&#9742;</div>
-            Confirmation call before we arrive
+            <div class="perk-icon">&#9733;</div>
+            150+ vehicles detailed, 5-star rated
           </li>
         </ul>
       </div>
@@ -634,12 +546,12 @@
     <div class="form-panel">
       <div class="form-container" id="formContainer">
 
-        <div class="form-title">REQUEST A PICKUP</div>
-        <p class="form-subtitle">We'll get back to you within 1 hour</p>
+        <div class="form-title">Request a Quote</div>
+        <p class="form-subtitle">We'll get back to you with pricing and availability</p>
 
         <form id="bookingForm" novalidate>
           <!-- FormSubmit config -->
-          <input type="hidden" name="_subject" value="New Pickup Request — Gotwixx Junk Removal">
+          <input type="hidden" name="_subject" value="New Detail Request — Signal Detailing">
           <input type="hidden" name="_template" value="table">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -666,67 +578,87 @@
             </div>
             <div>
               <label class="form-label" for="phone">Phone *</label>
-              <input type="tel" id="phone" name="Phone" class="form-input" placeholder="(762) 268-1636" required>
+              <input type="tel" id="phone" name="Phone" class="form-input" placeholder="(423) 555-1234" required>
               <div class="field-error">Phone number is required</div>
             </div>
           </div>
 
-          <!-- Address -->
-          <div class="form-group">
-            <label class="form-label" for="address">Pickup Address *</label>
-            <input type="text" id="address" name="Pickup Address" class="form-input" placeholder="123 Main St, Apt 4B" required>
-            <div class="field-error">Address is required</div>
+          <!-- Vehicle Info -->
+          <div class="form-group form-row">
+            <div>
+              <label class="form-label" for="vehicleYear">Year</label>
+              <input type="text" id="vehicleYear" name="Vehicle Year" class="form-input" placeholder="2024">
+            </div>
+            <div>
+              <label class="form-label" for="vehicleMake">Make *</label>
+              <input type="text" id="vehicleMake" name="Vehicle Make" class="form-input" placeholder="Toyota" required>
+              <div class="field-error">Vehicle make is required</div>
+            </div>
           </div>
 
           <div class="form-group form-row">
             <div>
-              <label class="form-label" for="city">City *</label>
-              <input type="text" id="city" name="City" class="form-input" placeholder="Your City" required>
-              <div class="field-error">City is required</div>
+              <label class="form-label" for="vehicleModel">Model *</label>
+              <input type="text" id="vehicleModel" name="Vehicle Model" class="form-input" placeholder="Camry" required>
+              <div class="field-error">Vehicle model is required</div>
             </div>
             <div>
-              <label class="form-label" for="zip">Zip Code *</label>
-              <input type="text" id="zip" name="Zip Code" class="form-input" placeholder="12345" required>
-              <div class="field-error">Zip code is required</div>
+              <label class="form-label" for="vehicleColor">Color</label>
+              <input type="text" id="vehicleColor" name="Vehicle Color" class="form-input" placeholder="Black">
             </div>
           </div>
 
-          <!-- Date & Time -->
-          <div class="form-group form-row">
-            <div>
-              <label class="form-label" for="pickupDate">Preferred Date *</label>
-              <input type="date" id="pickupDate" name="Preferred Date" class="form-input" required>
-              <div class="field-error">Pick a date</div>
-            </div>
-            <div>
-              <label class="form-label" for="pickupTime">Preferred Time *</label>
-              <select id="pickupTime" name="Preferred Time" class="form-select" required>
-                <option value="" disabled selected>Select a window</option>
-                <option value="8am-10am">8:00 AM – 10:00 AM</option>
-                <option value="10am-12pm">10:00 AM – 12:00 PM</option>
-                <option value="12pm-2pm">12:00 PM – 2:00 PM</option>
-                <option value="2pm-4pm">2:00 PM – 4:00 PM</option>
-                <option value="4pm-6pm">4:00 PM – 6:00 PM</option>
-              </select>
-              <div class="field-error">Pick a time window</div>
-            </div>
-          </div>
-
-          <!-- Description -->
+          <!-- Location -->
           <div class="form-group">
-            <label class="form-label" for="description">What Are We Hauling?</label>
-            <textarea id="description" name="Items to Haul" class="form-textarea" placeholder="Old couch, broken appliances, yard debris..."></textarea>
+            <label class="form-label" for="location">Your Location *</label>
+            <input type="text" id="location" name="Location" class="form-input" placeholder="Signal Mountain, TN" required>
+            <div class="field-error">Location is required</div>
           </div>
 
-          <button type="submit" class="submit-btn" id="submitBtn">BOOK MY PICKUP</button>
+          <!-- Service -->
+          <div class="form-group">
+            <label class="form-label" for="service">Service Interested In *</label>
+            <select id="service" name="Service" class="form-select" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="Interior Detailing">Interior Detailing</option>
+              <option value="Exterior Detailing">Exterior Detailing</option>
+              <option value="Full Detail Package">Full Detail Package</option>
+              <option value="Not Sure - Need Recommendation">Not Sure — Need a Recommendation</option>
+            </select>
+            <div class="field-error">Please select a service</div>
+          </div>
+
+          <!-- Add-ons -->
+          <div class="form-group">
+            <label class="form-label">Add-Ons (optional)</label>
+            <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:0.4rem;">
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--chrome);cursor:pointer;">
+                <input type="checkbox" name="Add-On: Scratch Removal" value="Yes" style="accent-color:var(--copper);"> Scratch Removal
+              </label>
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--chrome);cursor:pointer;">
+                <input type="checkbox" name="Add-On: Shampooing" value="Yes" style="accent-color:var(--copper);"> Shampooing
+              </label>
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--chrome);cursor:pointer;">
+                <input type="checkbox" name="Add-On: Ceramic Coating" value="Yes" style="accent-color:var(--copper);"> Ceramic Coating
+              </label>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="form-group">
+            <label class="form-label" for="notes">Anything Else?</label>
+            <textarea id="notes" name="Additional Notes" class="form-textarea" placeholder="Vehicle condition, preferred date, special requests..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">Submit Request</button>
         </form>
 
         <!-- Success -->
         <div class="success-message" id="successMessage">
           <div class="success-check">&#10003;</div>
-          <h3>YOU'RE BOOKED!</h3>
-          <p>We'll call you within the hour to confirm your pickup details. Keep an eye on your phone.</p>
-          <a href="index.html" class="btn-back">BACK TO HOME</a>
+          <h3>Request Received</h3>
+          <p>We'll review your info and get back to you with a custom quote. Keep an eye on your phone!</p>
+          <a href="index.html" class="btn-back">Back to Home</a>
         </div>
 
       </div>
@@ -736,52 +668,11 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-grid">
-
-      <!-- Brand & Owner -->
-      <div>
-        <div class="footer-brand">GOT<span>WIXX</span> JUNK REMOVAL</div>
-        <p class="footer-owner">Owned &amp; operated by <strong>Paxton Barnes</strong></p>
-        <ul class="footer-socials">
-          <li><a href="https://instagram.com/wixxgaragecleanup" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></li>
-          <li><a href="https://facebook.com/WixxGarageCleanout" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></li>
-        </ul>
-      </div>
-
-      <!-- Hours -->
-      <div>
-        <div class="footer-col-title">HOURS</div>
-        <div class="footer-info">
-          <strong>Mon – Fri</strong><br>7:00 AM – 7:00 PM<br>
-          <strong>Saturday</strong><br>8:00 AM – 5:00 PM<br>
-          <strong>Sunday</strong><br>Closed
-        </div>
-      </div>
-
-      <!-- Contact -->
-      <div>
-        <div class="footer-col-title">CONTACT</div>
-        <div class="footer-info">
-          <a href="tel:+17622681636" style="color:var(--chartreuse);text-decoration:none;font-weight:600;">(762) 268-1636</a><br>
-          <a href="mailto:wixxgarage@gmail.com" style="color:var(--light-gray);text-decoration:none;">wixxgarage@gmail.com</a><br><br>
-          Serving<br><strong>Signal Mountain &amp; Chattanooga</strong>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 Gotwixx Junk Removal. All rights reserved.</p>
-      <p class="footer-copy">Built with grit. No junk left behind.</p>
-    </div>
+    <p class="footer-copy">&copy; 2026 Signal Detailing. All rights reserved.</p>
+    <p class="footer-copy">(423) 633-7344</p>
   </footer>
 
   <script>
-    // Set min date to today
-    const dateInput = document.getElementById('pickupDate');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
-
     // Phone formatting
     const phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('input', function () {
@@ -810,7 +701,6 @@
       e.preventDefault();
       let valid = true;
 
-      // Validate required fields
       const required = form.querySelectorAll('[required]');
       required.forEach(field => {
         if (!field.value.trim()) {
@@ -819,7 +709,6 @@
         }
       });
 
-      // Validate email format
       const email = document.getElementById('email');
       if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
         email.classList.add('invalid');
@@ -832,13 +721,12 @@
         return;
       }
 
-      // Submit to FormSubmit.co
       submitBtn.classList.add('loading');
-      submitBtn.textContent = 'SUBMITTING...';
+      submitBtn.textContent = 'Submitting...';
 
       const formData = new FormData(form);
 
-      fetch('https://formsubmit.co/ajax/wixxgarage@gmail.com', {
+      fetch('https://formsubmit.co/ajax/signalcardetailing@gmail.com', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: formData
@@ -852,8 +740,8 @@
       })
       .catch(error => {
         submitBtn.classList.remove('loading');
-        submitBtn.textContent = 'BOOK MY PICKUP';
-        alert('Something went wrong. Please call us at (762) 268-1636 to book your pickup.');
+        submitBtn.textContent = 'Submit Request';
+        alert('Something went wrong. Please call us at (423) 633-7344 to book your detail.');
       });
     });
   </script>
